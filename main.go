@@ -32,7 +32,7 @@ func main() {
 		panic("error read stdin")
 	}
 
-	regexArabicNumerals, _ := regexp.Compile(`^[\d+\s[+\-*/]\s\d+$`)
+	regexArabicNumerals, _ := regexp.Compile(`^\d+\s[+\-*/]\s\d+$`)
 	regexRomanNumerals, _ := regexp.Compile(`^[IVX]+\s[+\-*/]\s[IVX]+$`)
 
 	var isRomanNumerals bool
