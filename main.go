@@ -24,7 +24,6 @@ func main() {
 	fmt.Print("> ")
 	read := bufio.NewReader(os.Stdin)
 	str, _ := read.ReadString('\n')
-	// str = strings.TrimSpace(str)
 
 	regexArabicNumerals := regexp.MustCompile(`^\s*(?P<a>\d+)\s*(?P<op>[+\-*/])\s*(?P<b>\d+)\s*$`)
 	regexRomanNumerals := regexp.MustCompile(`^\s*(?P<a>[IVX]+)\s*(?P<op>[+\-*/])\s*(?P<b>[IVX]+)\s*$`)
