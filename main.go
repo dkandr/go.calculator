@@ -32,33 +32,35 @@ func main() {
 		panic("error read stdin")
 	}
 
-	regexArabicNumerals, _ := regexp.Compile(`^\d+\s[+\-*/]\s\d+$`)
-	regexRomanNumerals, _ := regexp.Compile(`^[IVX]+\s[+\-*/]\s[IVX]+$`)
+	regexArabicNumerals := regexp.MustCompile(`^(?P<numeral1>\d+)\s(?P<operation>[+\-*/])\s(?P<numeral2>\d+)$`)
+	regexRomanNumerals := regexp.MustCompile(`^(?P<numeral1>[IVX])\s(?P<operation>[+\-*/])\s(?P<numeral2>[IVX])$`) // regexp.Compile(`^[IVX]+\s[+\-*/]\s[IVX]+$`)
 
 	var isRomanNumerals bool
+	var params []string
 
 	switch {
 	case regexArabicNumerals.MatchString(str):
 		isRomanNumerals = false
+		params = regexArabicNumerals.FindStringSubmatch(str)
 	case regexRomanNumerals.MatchString(str):
 		isRomanNumerals = true
+		params = regexRomanNumerals.FindStringSubmatch(str)
 	default:
 		panic("bad string (a + b)")
 	}
 
 	var a, b int
-	params := strings.Split(str, " ")
 
 	if isRomanNumerals {
 		var isAExist, isBExist bool
-		a, isAExist = romanNumerals[params[0]]
-		b, isBExist = romanNumerals[params[2]]
+		a, isAExist = romanNumerals[params[1]]
+		b, isBExist = romanNumerals[params[3]]
 		if !isAExist || !isBExist {
 			panic("unknown roman numeral")
 		}
 	} else {
-		a, _ = strconv.Atoi(params[0])
-		b, _ = strconv.Atoi(params[2])
+		a, _ = strconv.Atoi(params[1])
+		b, _ = strconv.Atoi(params[3])
 	}
 
 	if a < 1 || a > 10 || b < 1 || b > 10 {
@@ -66,7 +68,7 @@ func main() {
 	}
 
 	var result int
-	switch params[1] {
+	switch params[2] {
 	case "+":
 		result = a + b
 	case "-":
