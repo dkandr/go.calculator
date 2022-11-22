@@ -24,12 +24,8 @@ var romanNumerals map[string]int = map[string]int{
 func main() {
 	fmt.Print("> ")
 	read := bufio.NewReader(os.Stdin)
-	str, err := read.ReadString('\n')
+	str, _ := read.ReadString('\n')
 	str = strings.TrimSpace(str)
-
-	if err != nil {
-		panic("error read stdin")
-	}
 
 	regexArabicNumerals := regexp.MustCompile(`^\s*(?P<numeral1>\d+)\s*(?P<operation>[+\-*/])\s*(?P<numeral2>\d+)\s*$`)
 	regexRomanNumerals := regexp.MustCompile(`^\s*(?P<numeral1>[IVX]+)\s*(?P<operation>[+\-*/])\s*(?P<numeral2>[IVX]+)\s*$`)
