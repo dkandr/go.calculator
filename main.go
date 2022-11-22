@@ -33,7 +33,7 @@ func main() {
 	}
 
 	regexArabicNumerals := regexp.MustCompile(`^(?P<numeral1>\d+)\s(?P<operation>[+\-*/])\s(?P<numeral2>\d+)$`)
-	regexRomanNumerals := regexp.MustCompile(`^(?P<numeral1>[IVX])\s(?P<operation>[+\-*/])\s(?P<numeral2>[IVX])$`) // regexp.Compile(`^[IVX]+\s[+\-*/]\s[IVX]+$`)
+	regexRomanNumerals := regexp.MustCompile(`^(?P<numeral1>[IVX]+)\s(?P<operation>[+\-*/])\s(?P<numeral2>[IVX]+)$`) // regexp.Compile(`^[IVX]+\s[+\-*/]\s[IVX]+$`)
 
 	var isRomanNumerals bool
 	var params []string
