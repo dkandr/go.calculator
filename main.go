@@ -27,8 +27,8 @@ func main() {
 	str, _ := read.ReadString('\n')
 	str = strings.TrimSpace(str)
 
-	regexArabicNumerals := regexp.MustCompile(`^\s*(?P<numeral1>\d+)\s*(?P<operation>[+\-*/])\s*(?P<numeral2>\d+)\s*$`)
-	regexRomanNumerals := regexp.MustCompile(`^\s*(?P<numeral1>[IVX]+)\s*(?P<operation>[+\-*/])\s*(?P<numeral2>[IVX]+)\s*$`)
+	regexArabicNumerals := regexp.MustCompile(`^\s*(?P<a>\d+)\s*(?P<op>[+\-*/])\s*(?P<b>\d+)\s*$`)
+	regexRomanNumerals := regexp.MustCompile(`^\s*(?P<a>[IVX]+)\s*(?P<op>[+\-*/])\s*(?P<b>[IVX]+)\s*$`)
 
 	var isRomanNumerals bool
 	var params []string
