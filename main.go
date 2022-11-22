@@ -80,6 +80,9 @@ func main() {
 	}
 
 	if isRomanNumerals {
+		if result < 1 {
+			panic("bad result")
+		}
 	Loop:
 		for key, value := range romanNumerals {
 			if result == value {
